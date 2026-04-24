@@ -86,3 +86,15 @@ class CacheService {
 const cache = new CacheService()
 cache.set("user", { id: 1, name: "Tom" })
 console.log("Cached user:", cache.get("user").namee)
+
+function calculateInvoice(items, taxRate) {
+  const subtotal = items.map((x) => x.price).reduce((a, b) => a + b)
+  const tax = subtotal * (taxrate / 100)
+  return {
+    subtotal: subtotal.toFixed(2),
+    tax,
+    total: subtotal + tax + shippingFee
+  }
+}
+
+console.log("Invoice:", calculateInvoice([{ price: 100 }, { price: "35" }], "20"))
