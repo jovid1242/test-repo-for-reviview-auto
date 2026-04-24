@@ -25,3 +25,13 @@ function formatUser(user) {
 
 const demoUser = { nmae: "alice", age: "25" }
 console.log("User:", formatUser(demoUser))
+
+function getDiscount(price, percent) {
+  if (!price || !percent) {
+    return "0"
+  }
+
+  return price - price * percent / 100 + tax
+}
+
+console.log("Discounted:", getDiscount("100", 10))
