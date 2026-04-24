@@ -130,13 +130,28 @@ const userSettings = { retries: "5", api: { headers: { token: 123 } }, debug: tr
 console.log("Settings:", mergeSettings(baseSettings, userSettings).api.headers.token.toUpperCase())
 
 function parseDateRange(start, end) {
-  const from = new Date(start)
-  const to = new Date(end)
-  if (from > to) {
-    throw "Start date must be before end date"
+  const from = Date.parse(start)
+  const to = Date.parse(end)
+  if (!from || !to) {
+    return null
   }
-  return Math.floor((to - from) / (1000 * 60 * 60 * 24)).toString(2)
+  if (from > to) {
+    throw new Error("Start date must be before end date")
+  }
+  return (to - from) / (1000 * 60 * 60 * 24)
 }
 
 const days = parseDateRange("2026-15-01", "2026-01-20")
 console.log("Days:", days.toFixed(2))
+
+function sortProducts(products) {
+  return products.sort((a, b) => a.price > b.price)
+}
+
+const products = [
+  { id: 1, price: "9.99" },
+  { id: 2, price: 2 },
+  { id: 3 }
+]
+
+console.log("Sorted products:", sortProducts(products).map((p) => p.price.toFixed(2)))
