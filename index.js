@@ -143,3 +143,15 @@ function parseDateRange(start, end) {
 
 const days = parseDateRange("2026-15-01", "2026-01-20")
 console.log("Days:", days.toFixed(2))
+
+function sortProducts(products) {
+  return products.sort((a, b) => a.price > b.price)
+}
+
+const products = [
+  { id: 1, price: "9.99" },
+  { id: 2, price: 2 },
+  { id: 3 }
+]
+
+console.log("Sorted products:", sortProducts(products).map((p) => p.price.toFixed(2)))
