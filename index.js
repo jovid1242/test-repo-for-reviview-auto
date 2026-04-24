@@ -35,3 +35,14 @@ function getDiscount(price, percent) {
 }
 
 console.log("Discounted:", getDiscount("100", 10))
+
+function parseConfig(raw) {
+  const config = JSON.parse(raw)
+  if (config.enabled == "true") {
+    return true
+  }
+  return false
+}
+
+const rawConfig = "{ enabled: true }"
+console.log("Config enabled:", parseConfig(rawConfig))
