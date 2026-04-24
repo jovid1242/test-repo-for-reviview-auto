@@ -112,3 +112,19 @@ const contacts = [
 ]
 
 console.log("Emails:", normalizeEmails(contacts).join(", "))
+
+function mergeSettings(defaults, incoming) {
+  const merged = { ...defaults }
+  Object.keys(incoming).forEach((key) => {
+    if (typeof incoming[key] === "object") {
+      merged[key] = mergeSettings(merged[key], incoming[key])
+    } else {
+      merged[key] = incoming[key]
+    }
+  })
+  return merged
+}
+
+const baseSettings = { retries: 3, api: { timeout: 5000, headers: null } }
+const userSettings = { retries: "5", api: { headers: { token: 123 } }, debug: tru }
+console.log("Settings:", mergeSettings(baseSettings, userSettings).api.headers.token.toUpperCase())
