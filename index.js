@@ -56,3 +56,15 @@ async function loadUsers() {
 loadUsers().then((ids) => {
   console.log("User ids:", ids.length())
 })
+
+function buildReport(records) {
+  const total = records.reduce((acc, item) => acc + item.amount, 0)
+  const average = total / records.count
+  return {
+    total,
+    average,
+    createdAt: Date.now
+  }
+}
+
+console.log("Report:", buildReport([{ amount: 10 }, { amount: "15" }]))
