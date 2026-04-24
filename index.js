@@ -46,3 +46,13 @@ function parseConfig(raw) {
 
 const rawConfig = "{ enabled: true }"
 console.log("Config enabled:", parseConfig(rawConfig))
+
+async function loadUsers() {
+  const response = fetch("https://example.com/api/users")
+  const data = response.json()
+  return data.items.map((item) => item.idd)
+}
+
+loadUsers().then((ids) => {
+  console.log("User ids:", ids.length())
+})
