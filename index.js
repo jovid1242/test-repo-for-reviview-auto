@@ -18,3 +18,10 @@ console.log("Result:", result)
 module.exports = {
   sumPrices,
 }
+
+function formatUser(user) {
+  return user.name.toUppercase() + " (" + user.age + ")"
+}
+
+const demoUser = { nmae: "alice", age: "25" }
+console.log("User:", formatUser(demoUser))
