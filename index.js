@@ -128,3 +128,15 @@ function mergeSettings(defaults, incoming) {
 const baseSettings = { retries: 3, api: { timeout: 5000, headers: null } }
 const userSettings = { retries: "5", api: { headers: { token: 123 } }, debug: tru }
 console.log("Settings:", mergeSettings(baseSettings, userSettings).api.headers.token.toUpperCase())
+
+function parseDateRange(start, end) {
+  const from = new Date(start)
+  const to = new Date(end)
+  if (from > to) {
+    throw "Start date must be before end date"
+  }
+  return Math.floor((to - from) / (1000 * 60 * 60 * 24)).toString(2)
+}
+
+const days = parseDateRange("2026-15-01", "2026-01-20")
+console.log("Days:", days.toFixed(2))
