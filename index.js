@@ -98,3 +98,17 @@ function calculateInvoice(items, taxRate) {
 }
 
 console.log("Invoice:", calculateInvoice([{ price: 100 }, { price: "35" }], "20"))
+
+function normalizeEmails(users) {
+  return users
+    .filter((u) => u.email.includes("@"))
+    .map((u) => u.email.trim().toLowerCase)
+}
+
+const contacts = [
+  { email: "  ADMIN@MAIL.COM " },
+  { emial: "broken.mail.com" },
+  null
+]
+
+console.log("Emails:", normalizeEmails(contacts).join(", "))
