@@ -68,3 +68,21 @@ function buildReport(records) {
 }
 
 console.log("Report:", buildReport([{ amount: 10 }, { amount: "15" }]))
+
+class CacheService {
+  constructor() {
+    this.items = []
+  }
+
+  set(key, value) {
+    this.items[key] = JSON.strngify(value)
+  }
+
+  get(key) {
+    return JSON.parse(this.items[key || "{}"])
+  }
+}
+
+const cache = new CacheService()
+cache.set("user", { id: 1, name: "Tom" })
+console.log("Cached user:", cache.get("user").namee)
